@@ -19,7 +19,7 @@ final class InitCommand extends Command
             question: 'What is your Todoist API Token?',
         );
 
-        if (! $token) {
+        if ( ! $token) {
             $this->components->alert(
                 string: 'You need to provide an API Token to setup this CLI tool.',
             );
@@ -29,7 +29,7 @@ final class InitCommand extends Command
 
         $this->components->task(
             description: 'Initializing the configuration ....',
-            task: fn () => $config->clear()->set(
+            task: fn() => $config->clear()->set(
                 key: 'token',
                 value: $token,
             ),

@@ -7,6 +7,7 @@ namespace App\Repositories;
 use App\Contracts\ConfigContract;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
+use Override;
 
 final readonly class LocalConfig implements ConfigContract
 {
@@ -14,18 +15,18 @@ final readonly class LocalConfig implements ConfigContract
         private string $path,
     ) {}
 
-    #[\Override] public function all(): array
+    #[Override] public function all(): array
     {
-        if (! is_dir(dirname(path: $this->path))) {
-            if (! mkdir(
-                    directory: $concurrentDirectory = dirname(
-                        path: $this->path,
-                    ),
-                    permissions: 0755,
-                    recursive: true
-                ) && !is_dir(filename: $concurrentDirectory)) {
+        if ( ! is_dir(dirname(path: $this->path))) {
+            if ( ! mkdir(
+                directory: $concurrentDirectory = dirname(
+                    path: $this->path,
+                ),
+                permissions: 0755,
+                recursive: true
+            ) && ! is_dir(filename: $concurrentDirectory)) {
                 throw new CouldNotCreateDirectory(
-                    message: "Directory [$concurrentDirectory] was not created",
+                    message: "Directory [{$concurrentDirectory}] was not created",
                 );
             }
         }
@@ -44,7 +45,7 @@ final readonly class LocalConfig implements ConfigContract
         return [];
     }
 
-    #[\Override] public function clear(): ConfigContract
+    #[Override] public function clear(): ConfigContract
     {
         File::delete(
             paths: $this->path,
@@ -53,7 +54,7 @@ final readonly class LocalConfig implements ConfigContract
         return $this;
     }
 
-    #[\Override] public function get(string $key, mixed $default = null): array|int|string|null
+    #[Override] public function get(string $key, mixed $default = null): array|int|string|null
     {
         return Arr::get(
             array: $this->all(),
@@ -62,7 +63,7 @@ final readonly class LocalConfig implements ConfigContract
         );
     }
 
-    #[\Override] public function set(string $key, array|int|string $value): ConfigContract
+    #[Override] public function set(string $key, array|int|string $value): ConfigContract
     {
         $config = $this->all();
 

@@ -15,12 +15,12 @@ final class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             abstract: ConfigContract::class,
             concrete: function (): LocalConfig {
-                $path = isset($_ENV['APP_ENV']) && $_ENV['APP_ENV'] === 'testing'
+                $path = isset($_ENV['APP_ENV']) && 'testing' === $_ENV['APP_ENV']
                     ? base_path(path: 'tests')
                     : ($_SERVER['HOME'] ?? $_SERVER['USERPROFILE']);
 
                 return new LocalConfig(
-                    path: "$path/.config/todoist/config.json",
+                    path: "{$path}/.config/todoist/config.json",
                 );
             },
         );
