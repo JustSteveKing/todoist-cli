@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repositories;
 
 use App\Contracts\ConfigContract;
+use App\Exceptions\CouldNotCreateDirectory;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\File;
 use Override;
@@ -82,5 +83,10 @@ final readonly class LocalConfig implements ConfigContract
         );
 
         return $this;
+    }
+
+    public function string(string $key): string
+    {
+        return (string) $this->get($key);
     }
 }
