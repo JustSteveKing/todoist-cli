@@ -23,7 +23,7 @@ final class ListCommand extends Command
     {
         try {
             $tasks = $todoist->tasks()->list(
-                project: $this->argument(
+                project: (string) $this->argument(
                     key: 'project',
                 ),
             );
