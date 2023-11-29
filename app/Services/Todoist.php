@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services;
 
+use App\Services\Resources\ProjectResource;
+use App\Services\Resources\TaskResource;
 use Exception;
 use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\PendingRequest;
@@ -17,7 +19,22 @@ final readonly class Todoist
      */
     public function __construct(
         protected PendingRequest $request,
-    ) {}
+    ) {
+    }
+
+    public function projects(): ProjectResource
+    {
+        return new ProjectResource(
+            service: $this,
+        );
+    }
+
+    public function tasks(): TaskResource
+    {
+        return new TaskResource(
+            service: $this,
+        );
+    }
 
     /**
      * @param Method $method
