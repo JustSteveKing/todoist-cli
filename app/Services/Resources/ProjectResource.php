@@ -36,7 +36,7 @@ final readonly class ProjectResource
         }
 
 
-        return $response->collect()->map(fn (array $data) => Project::fromArray(
+        return $response->collect()->map(fn(array $data) => Project::fromArray(
             data: $data,
         ));
     }

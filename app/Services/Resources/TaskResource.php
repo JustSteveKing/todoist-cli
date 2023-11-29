@@ -40,7 +40,7 @@ final readonly class TaskResource
             );
         }
 
-        return $response->collect()->map(fn (array $data): Task => Task::fromArray(
+        return $response->collect()->map(fn(array $data): Task => Task::fromArray(
             data: $data,
         ));
     }

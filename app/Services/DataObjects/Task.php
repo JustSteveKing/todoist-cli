@@ -8,8 +8,7 @@ final readonly class Task
 {
     public function __construct(
         public string $id,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array{

@@ -7,9 +7,11 @@ namespace App\Commands\Todoist\Projects;
 use App\Enums\Color;
 use App\Services\Payloads\Projects\Create;
 use App\Services\Todoist;
-use LaravelZero\Framework\Commands\Command;
+
 use function Laravel\Prompts\confirm;
 use function Laravel\Prompts\select;
+
+use LaravelZero\Framework\Commands\Command;
 
 final class CreateCommand extends Command
 {
@@ -23,7 +25,7 @@ final class CreateCommand extends Command
             question: 'What do you want to call this project?',
         );
 
-        if (! $name) {
+        if ( ! $name) {
             $this->components->error(
                 string: 'Your project requires a name.',
             );
@@ -55,7 +57,7 @@ final class CreateCommand extends Command
         );
 
         $this->components->info(
-            string: "Project [$project->name] has been created. ID: [$project->id]",
+            string: "Project [{$project->name}] has been created. ID: [{$project->id}]",
         );
 
         return Command::SUCCESS;

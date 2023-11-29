@@ -15,8 +15,7 @@ final readonly class Create
         public null|Color $color = null,
         public bool $isFavorite = false,
         public View $view = View::Board,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array{

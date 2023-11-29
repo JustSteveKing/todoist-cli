@@ -6,7 +6,4 @@ namespace App\Exceptions;
 
 use Exception;
 
-final class CouldNotCreateDirectory extends Exception
-{
-    //
-}
+final class CouldNotCreateDirectory extends Exception {}

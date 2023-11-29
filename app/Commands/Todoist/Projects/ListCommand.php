@@ -27,7 +27,7 @@ final class ListCommand extends Command
             return Command::FAILURE;
         }
 
-        $projects->each(function (Project $project) {
+        $projects->each(function (Project $project): void {
             $this->components->twoColumnDetail(
                 first: 'ID',
                 second: $project->id,

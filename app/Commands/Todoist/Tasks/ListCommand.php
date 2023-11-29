@@ -6,10 +6,12 @@ namespace App\Commands\Todoist\Tasks;
 
 use App\Services\DataObjects\Task;
 use App\Services\Todoist;
-use LaravelZero\Framework\Commands\Command;
-use function Laravel\Prompts\confirm;
+
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\table;
+
+use LaravelZero\Framework\Commands\Command;
+use Throwable;
 
 final class ListCommand extends Command
 {
@@ -25,7 +27,7 @@ final class ListCommand extends Command
                     key: 'project',
                 ),
             );
-        } catch (\Throwable $exception) {
+        } catch (Throwable $exception) {
             error(
                 message: $exception->getMessage(),
             );
@@ -35,7 +37,7 @@ final class ListCommand extends Command
 
         table(
             headers: ['ID'],
-            rows: $tasks->map(fn (Task $task): array => $task->toArray()),
+            rows: $tasks->map(fn(Task $task): array => $task->toArray()),
         );
 
         return Command::SUCCESS;

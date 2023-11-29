@@ -19,8 +19,7 @@ final readonly class Todoist
      */
     public function __construct(
         protected PendingRequest $request,
-    ) {
-    }
+    ) {}
 
     public function projects(): ProjectResource
     {

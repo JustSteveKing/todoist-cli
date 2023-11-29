@@ -21,8 +21,7 @@ final readonly class Project
         public bool   $teamInbox,
         public View $view,
         public string $url,
-    ) {
-    }
+    ) {}
 
     /**
      * @param array{
